@@ -1,4 +1,5 @@
 let form = document.createElement('form')
+let main = document.createElement('main')
 
 document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector('body')
@@ -12,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
     summary.appendChild(p)
     body.appendChild(summary)
 
-    const main = document.createElement('main')
     body.appendChild(main)
     form.innerHTML = `<h4>Add New Film</h4>
     <label for="title">Title: </label>
@@ -62,6 +62,10 @@ function handleSearch(findings, director){
 }
 
 function postFilm(film){
+  let img = document.createElement('img')
+  img.src = film.image
+  img.className = 'posters'
+  main.appendChild(img)
   fetch("http://localhost:3000/posts", {
       method: "POST",
       headers: {

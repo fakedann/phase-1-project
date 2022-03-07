@@ -73,3 +73,11 @@ main {
   cursor: pointer;
   color: #000;
 }
+
+.posters {
+  margin-top: 50px;
+  margin-left: 40px;
+  width: 200px;
+  height: 300px;
+  float: left;
+}
