@@ -15,26 +15,27 @@ document.addEventListener("DOMContentLoaded", function() {
     let form = document.createElement('form')
     form.innerHTML = `<h4>Add New Film</h4>
     <label for="title">Title: </label>
-    <input type="text" name="title" id="new-film" />
+    <input type="text" name="title" placeholder="The Irishman" id="new-film" />
     <label for="director">Director: </label>
-    <input type="text" name="director" id="new-director" />
-    <input type="submit" value="Create" />`
+    <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
+    <input type="submit" class="submitBtn" value="Create" />`
+    form.addEventListener('submit', startFetching)
     main.appendChild(form)
   }, {once : true})
-  
 });
 
-function startFetching(){
-  let input = 'the irishman'
-  let year = '2019'
-  console.log(input+' '+year)
-  fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${input} ${year}`)
+function startFetching(e){
+  e.preventDefault()
+  fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
   .then(resp => resp.json() )
-  .then(resp => handleSearch(resp.results))
+  .then(resp => handleSearch(resp.results, e.target.director.value))
+  //form.reset()
 }
 
-function handleSearch(findings){
+function handleSearch(findings, director){
   console.log(findings)
+  newDirector = director.toLowerCase()
+  console.log(newDirector)
   if(findings.length === 0){
     console.log('sorry')
   }
@@ -42,9 +43,11 @@ function handleSearch(findings){
     fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${each.id}`)
     .then(resp => resp.json() )
     .then(resp => {
-      if(resp.directors === 'Martin Scorsese'){
+      let aux = resp.directors.toLowerCase()
+      console.log(aux)
+      if(aux === newDirector){
         console.log('success!')
-        postFilm(resp)
+        //postFilm(resp)
       }
     } )
   }
