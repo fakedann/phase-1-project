@@ -1,3 +1,5 @@
+let form = document.createElement('form')
+
 document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector('body')
   
@@ -12,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const main = document.createElement('main')
     body.appendChild(main)
-    let form = document.createElement('form')
     form.innerHTML = `<h4>Add New Film</h4>
     <label for="title">Title: </label>
     <input type="text" name="title" placeholder="The Irishman" id="new-film" />
@@ -26,16 +27,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function startFetching(e){
   e.preventDefault()
+  let director = ''
+  if (e.target.director.value !== null){
+    director = e.target.director.value.toLowerCase()
+  }
+  
   fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
   .then(resp => resp.json() )
-  .then(resp => handleSearch(resp.results, e.target.director.value))
-  //form.reset()
+  .then(resp => handleSearch(resp.results, director))
+  form.reset()
 }
 
 function handleSearch(findings, director){
   console.log(findings)
-  newDirector = director.toLowerCase()
-  console.log(newDirector)
   if(findings.length === 0){
     console.log('sorry')
   }
@@ -43,11 +47,14 @@ function handleSearch(findings, director){
     fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${each.id}`)
     .then(resp => resp.json() )
     .then(resp => {
-      let aux = resp.directors.toLowerCase()
-      console.log(aux)
-      if(aux === newDirector){
-        console.log('success!')
-        //postFilm(resp)
+      console.log(resp)
+      let aux = ''
+      if ( resp.directors !== null ){
+        aux = resp.directors.toLowerCase()
+      }
+      if(aux === director){
+        console.log(`this one got included: ${resp}`)
+        postFilm(resp)
       }
     } )
   }
