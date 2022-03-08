@@ -62,10 +62,16 @@ function handleSearch(findings, director){
 }
 
 function postFilm(film){
+  let div = document.createElement('div')
   let img = document.createElement('img')
+  let btn = document.createElement('button')
+  btn.innerHTML = "Add Comment"
   img.src = film.image
+  div.className = "images"
   img.className = 'posters'
-  main.appendChild(img)
+  btn.className = 'submitBtn'
+  div.append(img, btn)
+  main.appendChild(div)
   fetch("http://localhost:3000/posts", {
       method: "POST",
       headers: {
