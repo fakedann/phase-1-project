@@ -1,28 +1,30 @@
 let form = document.createElement('form')
-let main = document.createElement('main')
+let header = document.querySelector('header')
+let body = document.querySelector('body')
+let section = document.createElement('section')
+body.appendChild(section)
 let divNum = 1
 
 document.addEventListener("DOMContentLoaded", function() {
-  const body = document.querySelector('body')
   
-  const btn = document.querySelector('.btn')
+  let btn = document.querySelector('.btn')
   btn.addEventListener('click', function(){
-    const summary = document.createElement('div')
+    let summary = document.createElement('div')
     summary.className = 'summary'
     let p = document.createElement('p')
     p.innerHTML = "Search your favorite films down below."
     summary.appendChild(p)
-    body.appendChild(summary)
+    section.appendChild(summary)
 
-    body.appendChild(main)
+    //body.appendChild(main)
     form.innerHTML = `<h4>Add New Film</h4>
     <label for="title">Title: </label>
     <input type="text" name="title" placeholder="The Irishman" id="new-film" />
     <label for="director">Director: </label>
     <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
     <input type="submit" class="submitBtn" value="Fetch Film" />`
+    body.appendChild(form)
     form.addEventListener('submit', startFetching)
-    main.appendChild(form)
   }, {once : true})
 });
 
@@ -76,7 +78,7 @@ function postFilm(film){
   img.className = 'posters'
   btn.className = 'addBtn'
   div.append(img, btn)
-  main.appendChild(div)
+  body.appendChild(div)
   btn.addEventListener('click', function(){
     let commentSect = document.createElement('form')
     commentSect.className = "formComment"
