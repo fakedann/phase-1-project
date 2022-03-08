@@ -6,8 +6,7 @@
       "genres": "Adventure, Drama, Family",
       "runtime": "126",
       "countries": "USA, UK, France",
-      "id": 1,
-      "comments": "hola"
+      "id": 1
     },
     {
       "title": "Taxi Driver",
@@ -16,33 +15,7 @@
       "runtime": "114",
       "countries": "USA",
       "id": 2,
-      "comments": "hola"
-    },
-    {
-      "title": "Hugo",
-      "directors": "Martin Scorsese",
-      "genres": "Adventure, Drama, Family",
-      "runtime": "126",
-      "countries": "USA, UK, France",
-      "id": 3
-    },
-    {
-      "title": "Hugo",
-      "directors": "Martin Scorsese",
-      "genres": "Adventure, Drama, Family",
-      "runtime": "126",
-      "countries": "USA, UK, France",
-      "id": 4,
-      "comments": "dadada"
-    },
-    {
-      "title": "Hugo",
-      "directors": "Martin Scorsese",
-      "genres": "Adventure, Drama, Family",
-      "runtime": "126",
-      "countries": "USA, UK, France",
-      "id": 5,
-      "comments": "eee"
+      "comments": "dada"
     }
   ],
   "comments": [],

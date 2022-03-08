@@ -40,28 +40,27 @@ function startFetching(e){
 }
 
 function handleSearch(findings, director){
-  console.log(findings)
   let flag = 0
   
   for(let each of findings){
     fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${each.id}`)
     .then(resp => resp.json() )
     .then(resp => {
-      console.log(resp)
       let aux = ''
       if ( resp.directors !== null ){
         aux = resp.directors.toLowerCase()
       }
       if(aux === director){
-        console.log(`this one got included: ${resp}`)
         flag = 1
         postFilm(resp)
       }
     } )
   }
-  if (flag === 0){
-    alert("Sorry, nothing turned out from your search. Try again!")
-  }
+  setTimeout(function(){
+    if (flag === 0){
+      alert("Sorry, nothing turned out from your search. Try again!")
+    }
+  }, 2000)
 
 }
 
@@ -98,8 +97,6 @@ function postFilm(film){
         'comments': `${e.target.comment.value}`
         }),
       })
-    .then( resp => resp.json() )
-    .then( resp => console.log(resp) )
 
     commentSect.reset()
       
@@ -122,8 +119,6 @@ function postFilm(film){
   
         }),
       })
-    .then( resp => resp.json() )
-    .then( film => console.log(film) )
 }
 
 function deleteObj(start, finish){
@@ -134,8 +129,6 @@ function deleteObj(start, finish){
       "Content-Type": "application/json"
     }
   })
-  .then(res => res.json())
-  .then( obj => console.log(obj))
   }
 
 }
