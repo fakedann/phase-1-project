@@ -69,13 +69,14 @@ function postFilm(film){
   img.src = film.image
   div.className = "images"
   img.className = 'posters'
-  btn.className = 'commentBtn'
+  btn.className = 'addBtn'
   div.append(img, btn)
   main.appendChild(div)
   btn.addEventListener('click', function(){
     let comment = document.createElement('form')
-    comment.innerHTML = `<textarea name='comment' placeholder='Type your comment..'></textarea>
-    <input type="submit" class="submitBtn" value="Submit" />`
+    comment.className = "formComment"
+    comment.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
+    <input type="submit" class="commentBtn" value="Submit" />`
     comment.className = "comment"
     div.appendChild(comment)
     btn.remove()
@@ -101,8 +102,8 @@ function postFilm(film){
     .then( film => console.log(film) )
 }
 
-function deleteObj(id){
-  for(let i=1;i <= id; i++){
+function deleteObj(start, finish){
+  for(let i=start;i <= finish; i++){
     fetch(`http://localhost:3000/posts/${i}`, {
     method: "DELETE",
     headers: {

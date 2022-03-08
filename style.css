@@ -85,15 +85,28 @@ main {
 }
 
 .posters {
-  /* margin-top: 50px;
-  margin-left: 40px; */
   margin: auto;
   width: 200px;
   height: 300px;
-  /* float: left; */
 }
 
 .commentBtn {
+  background-color: #D7D9B1;
+  border: none;
+  border-radius: 4px;
+  width: 100px;
+  height: 40px;
+  color: white;
+}
+
+.commentText{
+  width: 120px;
+  height: 40px;
+  margin-top: 10px;
+  
+}
+
+.addBtn{
   display: block;
   margin: auto;
   background-color: #D7D9B1;

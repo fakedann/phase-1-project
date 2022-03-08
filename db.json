@@ -1,44 +1,12 @@
 {
   "posts": [
     {
-      "title": "Silence",
+      "title": "Hugo",
       "directors": "Martin Scorsese",
-      "genres": "Drama, History",
-      "runtime": "161",
-      "countries": "USA, UK, Taiwan, Japan, Mexico, Italy",
-      "id": 10
-    },
-    {
-      "title": "Silence",
-      "directors": "Martin Scorsese",
-      "genres": "Drama, History",
-      "runtime": "161",
-      "countries": "USA, UK, Taiwan, Japan, Mexico, Italy",
-      "id": 11
-    },
-    {
-      "title": "Silence",
-      "directors": "Martin Scorsese",
-      "genres": "Drama, History",
-      "runtime": "161",
-      "countries": "USA, UK, Taiwan, Japan, Mexico, Italy",
-      "id": 12
-    },
-    {
-      "title": "Silence",
-      "directors": "Martin Scorsese",
-      "genres": "Drama, History",
-      "runtime": "161",
-      "countries": "USA, UK, Taiwan, Japan, Mexico, Italy",
-      "id": 13
-    },
-    {
-      "title": "Silence",
-      "directors": "Martin Scorsese",
-      "genres": "Drama, History",
-      "runtime": "161",
-      "countries": "USA, UK, Taiwan, Japan, Mexico, Italy",
-      "id": 14
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126",
+      "countries": "USA, UK, France",
+      "id": 1
     }
   ],
   "comments": [],
