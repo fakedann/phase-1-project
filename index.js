@@ -1,5 +1,6 @@
 let form = document.createElement('form')
 let main = document.createElement('main')
+let divNum = 1
 
 document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector('body')
@@ -63,6 +64,8 @@ function handleSearch(findings, director){
 
 function postFilm(film){
   let div = document.createElement('div')
+  div.id = divNum
+  divNum++
   let img = document.createElement('img')
   let btn = document.createElement('button')
   btn.innerHTML = "Add Comment"
@@ -73,13 +76,31 @@ function postFilm(film){
   div.append(img, btn)
   main.appendChild(div)
   btn.addEventListener('click', function(){
-    let comment = document.createElement('form')
-    comment.className = "formComment"
-    comment.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
+    let commentSect = document.createElement('form')
+    commentSect.className = "formComment"
+    commentSect.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
     <input type="submit" class="commentBtn" value="Submit" />`
-    comment.className = "comment"
-    div.appendChild(comment)
+    commentSect.className = "comment"
+    div.appendChild(commentSect)
     btn.remove()
+
+    commentSect.addEventListener('submit', function(e){
+      e.preventDefault()
+      fetch(`http://localhost:3000/posts/${div.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        'comments': `${e.target.comment.value}`
+        }),
+      })
+    .then( resp => resp.json() )
+    .then( resp => console.log(resp) )
+
+    commentSect.reset()
+      
+    })
 
   }, {once : true})
 
