@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <input type="text" name="title" placeholder="The Irishman" id="new-film" />
     <label for="director">Director: </label>
     <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
-    <input type="submit" class="submitBtn" value="Create" />`
+    <input type="submit" class="submitBtn" value="Fetch Film" />`
     form.addEventListener('submit', startFetching)
     main.appendChild(form)
   }, {once : true})
@@ -69,9 +69,19 @@ function postFilm(film){
   img.src = film.image
   div.className = "images"
   img.className = 'posters'
-  btn.className = 'submitBtn'
+  btn.className = 'commentBtn'
   div.append(img, btn)
   main.appendChild(div)
+  btn.addEventListener('click', function(){
+    let comment = document.createElement('form')
+    comment.innerHTML = `<textarea name='comment' placeholder='Type your comment..'></textarea>
+    <input type="submit" class="submitBtn" value="Submit" />`
+    comment.className = "comment"
+    div.appendChild(comment)
+    btn.remove()
+
+  }, {once : true})
+
   fetch("http://localhost:3000/posts", {
       method: "POST",
       headers: {
@@ -92,12 +102,15 @@ function postFilm(film){
 }
 
 function deleteObj(id){
-  fetch(`http://localhost:3000/posts/${id}`, {
-  method: "DELETE",
-  headers: {
-    "Content-Type": "application/json"
+  for(let i=1;i <= id; i++){
+    fetch(`http://localhost:3000/posts/${i}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then( obj => console.log(obj))
   }
-})
-.then(res => res.json())
-.then( obj => console.log(obj))
+
 }
