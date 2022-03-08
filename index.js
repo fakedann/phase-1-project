@@ -41,9 +41,8 @@ function startFetching(e){
 
 function handleSearch(findings, director){
   console.log(findings)
-  if(findings.length === 0){
-    console.log('sorry')
-  }
+  let flag = 0
+  
   for(let each of findings){
     fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${each.id}`)
     .then(resp => resp.json() )
@@ -55,9 +54,13 @@ function handleSearch(findings, director){
       }
       if(aux === director){
         console.log(`this one got included: ${resp}`)
+        flag = 1
         postFilm(resp)
       }
     } )
+  }
+  if (flag === 0){
+    alert("Sorry, nothing turned out from your search. Try again!")
   }
 
 }
