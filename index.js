@@ -3,29 +3,27 @@ let header = document.querySelector('header')
 let body = document.querySelector('body')
 let section = document.createElement('section')
 body.appendChild(section)
-
-document.addEventListener("DOMContentLoaded", function() {
   
-  let btn = document.querySelector('.btn')
-  btn.addEventListener('click', function(){
-    let summary = document.createElement('div')
-    summary.className = 'summary'
-    let p = document.createElement('p')
-    p.innerHTML = "Search your favorite films down below."
-    summary.appendChild(p)
-    section.appendChild(summary)
+let btn = document.querySelector('.btn')
+btn.addEventListener('click', function(){
+  let summary = document.createElement('div')
+  summary.className = 'summary'
+  let p = document.createElement('p')
+  p.innerHTML = "Search your favorite films down below."
+  summary.appendChild(p)
+  section.appendChild(summary)
 
-    //body.appendChild(main)
-    form.innerHTML = `<h4>Add New Film</h4>
-    <label for="title">Title: </label>
-    <input type="text" name="title" placeholder="The Irishman" id="new-film" />
-    <label for="director">Director: </label>
-    <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
-    <input type="submit" class="submitBtn" value="Fetch Film" />`
-    body.appendChild(form)
-    form.addEventListener('submit', startFetching)
-  }, {once : true})
-});
+    
+  form.innerHTML = `<h4>Add New Film</h4>
+  <label for="title">Title: </label>
+  <input type="text" name="title" placeholder="The Irishman" id="new-film" />
+  <label for="director">Director: </label>
+  <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
+  <input type="submit" class="submitBtn" value="Fetch Film" />`
+  body.appendChild(form)
+  form.addEventListener('submit', startFetching)
+}, {once : true})
+
 
 function startFetching(e){
   e.preventDefault()
@@ -59,13 +57,17 @@ function handleSearch(findings, director, title){
         postFilm(resp)
         hola = 1
       }
-
-      if(i === findings.length-1 && hola === 0){
-        throw 'Something went wrong'
-      }
+      // console.log(i)
+      // if(i === findings.length-1 && hola === 0){
+      //   throw 'Your input did not return any results. Please, try again.'
+      // }
     } )
-    .catch(err => alert(err))
   }
+  setTimeout(()=> {
+    if(hola === 0){
+      alert('Your input did not return any results. Please, try again.')
+    }
+  }, 2000)
 
 }
 
@@ -107,6 +109,10 @@ function postFilm(film){
     })
 
   }, {once : true})
+
+  img.addEventListener('mouseover', () => img.className = img.className+" mouseOver")
+  img.addEventListener('mouseout', () => img.className ="posters")
+
 
   fetch("http://localhost:3000/posts", {
       method: "POST",

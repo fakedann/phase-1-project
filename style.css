@@ -112,3 +112,6 @@ header {
   color: white;
 }
 
+.posters.mouseOver{
+  border: 5px solid black;
+}
