@@ -1,15 +1,5 @@
 {
-  "posts": [
-    {
-      "title": "Hugo",
-      "directors": "Martin Scorsese",
-      "genres": "Adventure, Drama, Family",
-      "runtime": "126",
-      "countries": "USA, UK, France",
-      "id": 1,
-      "comments": "hola"
-    }
-  ],
+  "posts": [],
   "comments": [],
   "profile": {
     "name": "typicode"

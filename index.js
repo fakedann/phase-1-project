@@ -3,7 +3,6 @@ let header = document.querySelector('header')
 let body = document.querySelector('body')
 let section = document.createElement('section')
 body.appendChild(section)
-let divNum = 1
 
 document.addEventListener("DOMContentLoaded", function() {
   
@@ -32,7 +31,6 @@ function startFetching(e){
   e.preventDefault()
   let director = ''
   let title = ''
-  console.log(e.target.title.value)
   if (e.target.director.value.trim() !== director){
     director = e.target.director.value.toLowerCase()
     title = e.target.title.value.toLowerCase()
@@ -57,25 +55,22 @@ function handleSearch(findings, director, title){
         aux1 = resp.title.toLowerCase()
         aux2 = resp.directors.toLowerCase()
       }
-      console.log(resp)
       if(aux2 === director && title === aux1){
         postFilm(resp)
         hola = 1
       }
 
       if(i === findings.length-1 && hola === 0){
-        throw new Error('Something went wrong')
+        throw 'Something went wrong'
       }
     } )
-    .catch(err => console.log(err))
+    .catch(err => alert(err))
   }
 
 }
 
 function postFilm(film){
   let div = document.createElement('div')
-  div.id = divNum
-  divNum++
   let img = document.createElement('img')
   let btn = document.createElement('button')
   btn.innerHTML = "Add Comment"
@@ -128,6 +123,10 @@ function postFilm(film){
   
         }),
       })
+      .then(resp => resp.json())
+      .then(resp => {
+        div.id = resp.id
+      })
 }
 
 function deleteObj(start, finish){
@@ -139,5 +138,4 @@ function deleteObj(start, finish){
     }
   })
   }
-
 }
