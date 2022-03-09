@@ -3,6 +3,7 @@ let header = document.querySelector('header')
 let body = document.querySelector('body')
 let section = document.createElement('section')
 body.appendChild(section)
+let flag = 0
 let divNum = 1
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -37,16 +38,15 @@ function startFetching(e){
     .then(resp => resp.json() )
     .then(resp => handleSearch(resp.results, director))
   }else{
-    alert("Sorry, nothing turned out from your search. Try again!")
+    alert("Sorry, try being a little more specific when you type in the director!")
   }
   form.reset()
 }
 
 function handleSearch(findings, director){
-  let flag = 0
-  
-  for(let each of findings){
-    fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${each.id}`)
+  let hola = 0
+  for(let i = 0; i < findings.length; i++){
+    fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${findings[i].id}`)
     .then(resp => resp.json() )
     .then(resp => {
       let aux = ''
@@ -54,22 +54,16 @@ function handleSearch(findings, director){
         aux = resp.directors.toLowerCase()
       }
       if(aux === director){
-        flag = 1
         postFilm(resp)
+        hola = 1
+      }
+
+      if(i === findings.length-1 && hola === 0){
+        throw new Error('Something went wrong')
       }
     } )
-    .then( resp => {
-      console.log(resp)
-      if (flag === 0){
-        alert("Sorry, nothing turned out from your search. Try again!")
-      }
-    })
+    .catch(err => console.log(err))
   }
-  // setTimeout(function(){
-  //   if (flag === 0){
-  //     alert("Sorry, nothing turned out from your search. Try again!")
-  //   }
-  // }, 1500)
 
 }
 
@@ -86,6 +80,7 @@ function postFilm(film){
   btn.className = 'addBtn'
   div.append(img, btn)
   body.appendChild(div)
+
   btn.addEventListener('click', function(){
     let commentSect = document.createElement('form')
     commentSect.className = "formComment"
