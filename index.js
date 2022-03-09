@@ -31,13 +31,14 @@ document.addEventListener("DOMContentLoaded", function() {
 function startFetching(e){
   e.preventDefault()
   let director = ''
-  if (e.target.director.value !== null){
+  if (e.target.director.value.trim() !== director){
     director = e.target.director.value.toLowerCase()
+    fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
+    .then(resp => resp.json() )
+    .then(resp => handleSearch(resp.results, director))
+  }else{
+    alert("Sorry, nothing turned out from your search. Try again!")
   }
-  
-  fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
-  .then(resp => resp.json() )
-  .then(resp => handleSearch(resp.results, director))
   form.reset()
 }
 
@@ -57,12 +58,18 @@ function handleSearch(findings, director){
         postFilm(resp)
       }
     } )
+    .then( resp => {
+      console.log(resp)
+      if (flag === 0){
+        alert("Sorry, nothing turned out from your search. Try again!")
+      }
+    })
   }
-  setTimeout(function(){
-    if (flag === 0){
-      alert("Sorry, nothing turned out from your search. Try again!")
-    }
-  }, 2000)
+  // setTimeout(function(){
+  //   if (flag === 0){
+  //     alert("Sorry, nothing turned out from your search. Try again!")
+  //   }
+  // }, 1500)
 
 }
 

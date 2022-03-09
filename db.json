@@ -1,5 +1,30 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126",
+      "countries": "USA, UK, France",
+      "id": 1
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126",
+      "countries": "USA, UK, France",
+      "id": 2
+    },
+    {
+      "title": "Inception",
+      "directors": "Christopher Nolan",
+      "genres": "Action, Adventure, Sci-Fi",
+      "runtime": "148",
+      "countries": "USA, UK",
+      "id": 3
+    }
+  ],
   "comments": [],
   "profile": {
     "name": "typicode"
