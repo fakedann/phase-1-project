@@ -6,15 +6,8 @@
       "genres": "Adventure, Drama, Family",
       "runtime": "126",
       "countries": "USA, UK, France",
-      "id": 1
-    },
-    {
-      "title": "The Irishman",
-      "directors": "Martin Scorsese",
-      "genres": "Biography, Crime, Drama",
-      "runtime": "209",
-      "countries": "USA",
-      "id": 2
+      "id": 1,
+      "comments": "hola"
     }
   ],
   "comments": [],

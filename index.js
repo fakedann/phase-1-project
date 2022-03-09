@@ -3,7 +3,6 @@ let header = document.querySelector('header')
 let body = document.querySelector('body')
 let section = document.createElement('section')
 body.appendChild(section)
-let flag = 0
 let divNum = 1
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -32,28 +31,34 @@ document.addEventListener("DOMContentLoaded", function() {
 function startFetching(e){
   e.preventDefault()
   let director = ''
+  let title = ''
+  console.log(e.target.title.value)
   if (e.target.director.value.trim() !== director){
     director = e.target.director.value.toLowerCase()
+    title = e.target.title.value.toLowerCase()
     fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
     .then(resp => resp.json() )
-    .then(resp => handleSearch(resp.results, director))
+    .then(resp => handleSearch(resp.results, director, title))
   }else{
     alert("Sorry, try being a little more specific when you type in the director!")
   }
   form.reset()
 }
 
-function handleSearch(findings, director){
+function handleSearch(findings, director, title){
   let hola = 0
   for(let i = 0; i < findings.length; i++){
     fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${findings[i].id}`)
     .then(resp => resp.json() )
     .then(resp => {
-      let aux = ''
-      if ( resp.directors !== null ){
-        aux = resp.directors.toLowerCase()
+      let aux1 = ''
+      let aux2 = ''
+      if ( resp.title !== null && resp.directors !== null){
+        aux1 = resp.title.toLowerCase()
+        aux2 = resp.directors.toLowerCase()
       }
-      if(aux === director){
+      console.log(resp)
+      if(aux2 === director && title === aux1){
         postFilm(resp)
         hola = 1
       }
