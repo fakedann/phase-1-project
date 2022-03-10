@@ -32,43 +32,30 @@ function startFetching(e){
   if (e.target.director.value.trim() !== director){
     director = e.target.director.value.toLowerCase()
     title = e.target.title.value.toLowerCase()
-    fetch(`https://imdb-api.com/en/API/SearchMovie/k_652gzlhp/${e.target.title.value}`)
+    fetch(`http://www.omdbapi.com/?apikey=6e17c072&t=${e.target.title.value}`)
     .then(resp => resp.json() )
-    .then(resp => handleSearch(resp.results, director, title))
+    .then(resp => handleSearch(resp, director, title))
   }else{
     alert("Sorry, try being a little more specific when you type in the director!")
   }
   form.reset()
 }
 
-function handleSearch(findings, director, title){
-  let hola = 0
-  for(let i = 0; i < findings.length; i++){
-    fetch(`https://imdb-api.com/en/API/Title/k_652gzlhp/${findings[i].id}`)
-    .then(resp => resp.json() )
-    .then(resp => {
-      let aux1 = ''
-      let aux2 = ''
-      if ( resp.title !== null && resp.directors !== null){
-        aux1 = resp.title.toLowerCase()
-        aux2 = resp.directors.toLowerCase()
-      }
-      if(aux2 === director && title === aux1){
-        postFilm(resp)
-        hola = 1
-      }
-      // console.log(i)
-      // if(i === findings.length-1 && hola === 0){
-      //   throw 'Your input did not return any results. Please, try again.'
-      // }
-    } )
+function handleSearch(film, director, title){
+  let auxDirector = ''
+  let auxTitle = ''
+  if (film.Response !== false){
+    auxDirector = film.Director.toLowerCase()
+    auxTitle = film.Title.toLowerCase()
+  }else{
+    alert('Sorry, your search did not match with any movies. Please, try again.')
   }
-  setTimeout(()=> {
-    if(hola === 0){
-      alert('Your input did not return any results. Please, try again.')
-    }
-  }, 2000)
 
+  if(auxDirector === director && auxTitle === title){
+    postFilm(film)
+  }else{
+    alert('Sorry, your movie did not match with the director you submitted. Please, try again.')
+  }
 }
 
 function postFilm(film){
@@ -76,7 +63,7 @@ function postFilm(film){
   let img = document.createElement('img')
   let btn = document.createElement('button')
   btn.innerHTML = "Add Comment"
-  img.src = film.image
+  img.src = film.Poster
   div.className = "images"
   img.className = 'posters'
   btn.className = 'addBtn'
@@ -121,11 +108,11 @@ function postFilm(film){
         Accept: "application/json",
       },
       body: JSON.stringify({
-        'title': `${film.title}`,
-        'directors': `${film.directors}`,
-        "genres": `${film.genres}`,
-        "runtime": `${film.runtimeMins}`,
-        "countries": `${film.countries}`
+        'title': `${film.Title}`,
+        'directors': `${film.Director}`,
+        "genres": `${film.Genre}`,
+        "runtime": `${film.Runtime}`,
+        "countries": `${film.Country}`
   
         }),
       })
