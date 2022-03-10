@@ -1,5 +1,15 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "title": "Taxi Driver",
+      "directors": "Martin Scorsese",
+      "genres": "Crime, Drama",
+      "runtime": "114 min",
+      "countries": "United States",
+      "id": 1,
+      "comments": "This is a great film."
+    }
+  ],
   "comments": [],
   "profile": {
     "name": "typicode"
