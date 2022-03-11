@@ -10,11 +10,13 @@
 
 The project's main purpose is showcasing the ability to properly access a public API and efficiently manipulating its data through frontend tools. In order to accomplish this exercise, [OMDb's API](http://www.omdbapi.com/) was employed because of its resourceful film data. **Daniel's Film Processor** allows the user to search and store a beloved film into a personal database provided by [NPM, inc.](https://www.npmjs.com/package/json-server)
 
-## Installation
+## Setup
 
-After having [installed](https://www.npmjs.com/package/json-server) NPM's JSON server, you must locate the folder in which this repository was downloaded.
+### Requirements
 
-Follow these commands.
+The project relies on npm and node.js capabilities. If the user's computer has not installed these components, [follow these instructions to do so. ](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) Additionally, the user [needs to install](https://www.npmjs.com/package/json-server) npm's JSON server. First, locate the folder in which this repository was downloaded.
+
+Follow these commands:
 
 ```sh
 cd path/to/repository
@@ -66,7 +68,7 @@ However, these inputs will not work because they are not 'exact' matches:
 `Title: Taxi Driver`
 `Director:   `
 
-If the user satisfactorily retrieves a film, a corresponding poster will be posted in the webpage. At this moment, selected data from the film will be directly posted into http://localhost:3000/posts. For example:
+If the user satisfactorily retrieves a film, a corresponding poster will be posted in the webpage. At this moment, selected data from the film will be directly posted into http://localhost:3000/posts as follows:
 
 ```sh
  [
@@ -81,7 +83,7 @@ If the user satisfactorily retrieves a film, a corresponding poster will be post
 ]
 ```
 
-Additionally, near the film's poster, there will be a button that the user can click in order to add comments for that film directly into the database. These comments can be updated at any time if the page is not refreshed. They will persist if they page is reloaded, but they will not be able to be changed anymore.
+Moreover, near the film's poster, there will be a button that the user can click in order to add comments for that film directly into the database. These comments can be updated at any time if the page is not refreshed. They will persist if they page is reloaded, but they will not be able to be changed after that moment.
 
 ```sh
 [
