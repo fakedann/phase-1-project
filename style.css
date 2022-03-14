@@ -15,7 +15,6 @@ body {
 }
 
 .main {
-  
   min-height: 500px;
   overflow: hidden;
   background: #84ACCE;
@@ -40,6 +39,19 @@ header {
   background: #827191;
   text-align: center;
   padding: 4em 0;
+}
+
+footer {
+  min-height: 300px;
+  overflow: hidden;
+  background: #827191;
+  margin: 0 auto;
+  text-align: center;
+  opacity: .8;
+  font-size: .95rem;
+  padding: 1em 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .summary {
@@ -89,6 +101,7 @@ header {
   float: left;
   margin-top: 30px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .posters {
@@ -137,4 +150,9 @@ header {
 
 .posters.mouseOver{
   border: 5px solid black;
+}
+
+#database {
+  text-align: center;
+  font-size: 1rem;
 }

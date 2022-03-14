@@ -3,6 +3,7 @@ let header = document.querySelector('header')
 let body = document.querySelector('body')
 let main = document.createElement('div')
 let section = document.createElement('section')
+let footer = document.createElement('footer')
 main.className = "main"
 body.appendChild(section)
 body.appendChild(main)
@@ -15,6 +16,11 @@ btn.addEventListener('click', function(){
   p.innerHTML = "Search your favorite films down below."
   summary.appendChild(p)
   section.appendChild(summary)
+
+  footer.innerHTML = `<button type="button" class="btn" id="database">CHECK YOUR DATABASE</button>`
+  body.appendChild(footer)
+  let data = document.getElementById('database')
+  data.addEventListener('click', checkDatabase, {once : true})
   
   form.innerHTML = `<h4>Searched Films</h4>
   <label for="title">Title: </label>
@@ -103,12 +109,15 @@ function addFilm(e, film){
         'directors': `${film.Director}`,
         "genres": `${film.Genre}`,
         "runtime": `${film.Runtime}`,
-        "countries": `${film.Country}`
+        "countries": `${film.Country}`,
+        "comments": '',
+        "poster": `${film.Poster}`
   
         }),
       })
       .then(resp => resp.json())
       .then(resp => {
+        alert('This film was succesfully added to your database!')
         parentDiv.id = resp.id
 
       })
@@ -138,6 +147,33 @@ function handleComment(e){
     e.target.reset()
     
   })
+}
+
+function checkDatabase(){
+  let container = document.createElement('div')
+  footer.appendChild(container)
+  fetch('http://localhost:3000/posts')
+  .then(resp => resp.json())
+  .then( database => {
+    console.log(database)
+    for(each of database){
+      let div = document.createElement('div')
+      let img = document.createElement('img')
+      let p = document.createElement('p')
+      p.innerHTML = `Title: ${each.title}<br>
+      Directors: ${each.directors}<br>
+      Genres: ${each.genres}<br>
+      Countries: ${each.countries}<br>
+      Comments: ${each.comments}`
+      img.src = each.poster
+      div.className = "images"
+      img.className = 'posters'
+      div.append(img, p)
+      container.appendChild(div)
+      
+    }
+  })
+
 }
 
 function deleteObj(start, finish){
