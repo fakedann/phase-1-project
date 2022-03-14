@@ -72,39 +72,18 @@ function postFilm(film){
   addBtn.className = 'addBtn'
   div.append(img, addBtn)
   main.appendChild(div)
-  setTimeout(() => {
-    console.log(div)
-  }, 2000);
-
+  
   addBtn.addEventListener('click', function(e){
     addFilm(e, film)
+    let commentBtn = document.createElement('button')
+    commentBtn.innerHTML = "Add Comment"
+    commentBtn.className = "addBtn"
+    div.appendChild(commentBtn)
+    addBtn.remove()
+    commentBtn.addEventListener('click', function(e){
+      handleComment(e)
+    })
   })
-  // btn.addEventListener('click', function(){
-  //   let commentSect = document.createElement('form')
-  //   commentSect.className = "formComment"
-  //   commentSect.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
-  //   <input type="submit" class="commentBtn" value="Submit" />`
-  //   commentSect.className = "comment"
-  //   div.appendChild(commentSect)
-  //   btn.remove()
-
-  //   commentSect.addEventListener('submit', function(e){
-  //     e.preventDefault()
-  //     fetch(`http://localhost:3000/posts/${div.id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       'comments': `${e.target.comment.value}`
-  //       }),
-  //     })
-
-  //   commentSect.reset()
-      
-  //   })
-
-  // }, {once : true})
 
   img.addEventListener('mouseover', () => img.className = img.className+" mouseOver")
   img.addEventListener('mouseout', () => img.className ="posters")
@@ -112,8 +91,7 @@ function postFilm(film){
 }
 
 function addFilm(e, film){
-  // console.log(e.target.parentNode)
-  //REMEMBER TO HANDLE DIV.ID = RESP.ID
+  let parentDiv = e.target.parentNode
   fetch("http://localhost:3000/posts", {
       method: "POST",
       headers: {
@@ -130,7 +108,36 @@ function addFilm(e, film){
         }),
       })
       .then(resp => resp.json())
-      .then(resp => console.log(resp))
+      .then(resp => {
+        parentDiv.id = resp.id
+
+      })
+}
+
+function handleComment(e){
+  let commentSect = document.createElement('form')
+  commentSect.className = "formComment"
+  commentSect.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
+  <input type="submit" class="commentBtn" value="Submit" />`
+  commentSect.className = "comment"
+  e.target.parentNode.appendChild(commentSect)
+  e.target.remove()
+
+  commentSect.addEventListener('submit', function(e){
+    e.preventDefault()
+    fetch(`http://localhost:3000/posts/${e.target.parentNode.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      'comments': `${e.target.comment.value}`
+      }),
+    })
+
+    e.target.reset()
+    
+  })
 }
 
 function deleteObj(start, finish){
