@@ -1,41 +1,46 @@
-let form = document.createElement('form')
-let header = document.querySelector('header')
-let body = document.querySelector('body')
-let main = document.createElement('div')
-let section = document.createElement('section')
-let footer = document.createElement('footer')
-main.className = "main"
-body.appendChild(section)
-body.appendChild(main)
-  
-let btn = document.querySelector('.btn')
-btn.addEventListener('click', function(){
+document.addEventListener('DOMContentLoaded', function(){
+  let btn = document.querySelector('.btn')
+  btn.addEventListener('click', function(e){
+    setUpPage(e)
+  }, {once : true})
+})
+
+function setUpPage(e){
+  let body = e.target.parentNode.parentNode
+  let section = document.createElement('section')
+  let footer = document.createElement('footer')
+  let form = document.createElement('form')
+  let main = document.createElement('div')
+  main.className = "main"
+  main.appendChild(form)
+  body.append(section, main, footer)
+  //CREATING SUMMARY
   let summary = document.createElement('div')
   summary.className = 'summary'
   let p = document.createElement('p')
   p.innerHTML = "Search your favorite films down below."
   summary.appendChild(p)
   section.appendChild(summary)
-
+  //CREATING FOOTER
   footer.innerHTML = `<button type="button" class="btn" id="database">CHECK YOUR DATABASE</button>`
-  body.appendChild(footer)
   let data = document.getElementById('database')
-  data.addEventListener('click', checkDatabase, {once : true})
-  
-  form.innerHTML = `<h4>Searched Films</h4>
+  data.addEventListener('click', function(e){
+    checkDatabase(e)
+  })
+  //CREATING FORM
+  form.innerHTML = `<h4>SEARCHED FILMS</h4>
   <label for="title">Title: </label>
   <input type="text" name="title" placeholder="The Irishman" id="new-film" />
   <label for="director">Director: </label>
   <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
   <input type="submit" class="submitBtn" value="Fetch Film" />`
-  main.appendChild(form)
-  // body.appendChild(main)
-  form.addEventListener('submit', startFetching)
-}, {once : true})
+  form.addEventListener('submit', checkInput)
 
+}
 
-function startFetching(e){
+function checkInput(e){
   e.preventDefault()
+  let evento = e
   let director = ''
   let title = ''
   if (e.target.director.value.trim() !== director){
@@ -43,14 +48,14 @@ function startFetching(e){
     title = e.target.title.value.toLowerCase()
     fetch(`http://www.omdbapi.com/?apikey=6e17c072&t=${e.target.title.value}`)
     .then(resp => resp.json() )
-    .then(resp => handleSearch(resp, director, title))
+    .then(resp => handleSearch(evento, resp, director, title))
   }else{
     alert("Sorry, try being a little more specific when you type in the director!")
   }
-  form.reset()
+  e.target.reset()
 }
 
-function handleSearch(film, director, title){
+function handleSearch(evento, film, director, title){
   let auxDirector = ''
   let auxTitle = ''
   if (film.Response !== false){
@@ -61,13 +66,13 @@ function handleSearch(film, director, title){
   }
 
   if(auxDirector === director && auxTitle === title){
-    postFilm(film)
+    showPoster(evento, film)
   }else{
     alert('Sorry, your movie did not match with the director you submitted. Please, try again.')
   }
 }
 
-function postFilm(film){
+function showPoster(evento, film){
   let div = document.createElement('div')
   let img = document.createElement('img')
   let addBtn = document.createElement('button')
@@ -77,7 +82,7 @@ function postFilm(film){
   img.className = 'posters'
   addBtn.className = 'addBtn'
   div.append(img, addBtn)
-  main.appendChild(div)
+  evento.target.parentNode.appendChild(div)
   
   addBtn.addEventListener('click', function(e){
     addFilm(e, film)
@@ -144,33 +149,38 @@ function handleComment(e){
       }),
     })
 
+    alert('Your comment was succesfully added!')
     e.target.reset()
     
   })
 }
 
-function checkDatabase(){
+function checkDatabase(e){
   let container = document.createElement('div')
-  footer.appendChild(container)
+  container.innerHTML = ''
+  e.target.parentNode.appendChild(container)
   fetch('http://localhost:3000/posts')
   .then(resp => resp.json())
   .then( database => {
-    console.log(database)
-    for(each of database){
-      let div = document.createElement('div')
-      let img = document.createElement('img')
-      let p = document.createElement('p')
-      p.innerHTML = `Title: ${each.title}<br>
-      Directors: ${each.directors}<br>
-      Genres: ${each.genres}<br>
-      Countries: ${each.countries}<br>
-      Comments: ${each.comments}`
-      img.src = each.poster
-      div.className = "images"
-      img.className = 'posters'
-      div.append(img, p)
-      container.appendChild(div)
-      
+    if(database.length === 0){
+      alert('Your database is empty at the moment. Add some films first and check again later!')
+    }else{
+      for(each of database){
+        let div = document.createElement('div')
+        let img = document.createElement('img')
+        let p = document.createElement('p')
+        p.innerHTML = `Title: ${each.title}<br>
+        Directors: ${each.directors}<br>
+        Genres: ${each.genres}<br>
+        Countries: ${each.countries}<br>
+        Comments: ${each.comments}`
+        img.src = each.poster
+        div.className = "imagesData"
+        img.className = 'posters'
+        div.append(img, p)
+        container.appendChild(div)
+        
+      }
     }
   })
 
