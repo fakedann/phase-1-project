@@ -7,7 +7,153 @@
       "runtime": "114 min",
       "countries": "United States",
       "id": 1,
-      "comments": "This is a great film."
+      "comments": "Michael is not a fan of this film"
+    },
+    {
+      "title": "The Irishman",
+      "directors": "Martin Scorsese",
+      "genres": "Biography, Crime, Drama",
+      "runtime": "209 min",
+      "countries": "United States",
+      "id": 2,
+      "comments": "I loved this film"
+    },
+    {
+      "title": "Inception",
+      "directors": "Christopher Nolan",
+      "genres": "Action, Adventure, Sci-Fi",
+      "runtime": "148 min",
+      "countries": "United States, United Kingdom",
+      "id": 3,
+      "comments": "good film"
+    },
+    {
+      "title": "Inception",
+      "directors": "Christopher Nolan",
+      "genres": "Action, Adventure, Sci-Fi",
+      "runtime": "148 min",
+      "countries": "United States, United Kingdom",
+      "id": 4
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 5
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 6
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 7
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 8
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 9
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 10
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 11
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 12
+    },
+    {
+      "title": "Inception",
+      "directors": "Christopher Nolan",
+      "genres": "Action, Adventure, Sci-Fi",
+      "runtime": "148 min",
+      "countries": "United States, United Kingdom",
+      "id": 13
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 14
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 15
+    },
+    {
+      "title": "undefined",
+      "directors": "undefined",
+      "genres": "undefined",
+      "runtime": "undefined",
+      "countries": "undefined",
+      "id": 16
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 17
+    },
+    {
+      "title": "Before Sunset",
+      "directors": "Richard Linklater",
+      "genres": "Drama, Romance",
+      "runtime": "80 min",
+      "countries": "United States, France",
+      "id": 18
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 19
     }
   ],
   "comments": [],

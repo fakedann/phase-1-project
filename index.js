@@ -1,8 +1,11 @@
 let form = document.createElement('form')
 let header = document.querySelector('header')
 let body = document.querySelector('body')
+let main = document.createElement('div')
 let section = document.createElement('section')
+main.className = "main"
 body.appendChild(section)
+body.appendChild(main)
   
 let btn = document.querySelector('.btn')
 btn.addEventListener('click', function(){
@@ -12,15 +15,15 @@ btn.addEventListener('click', function(){
   p.innerHTML = "Search your favorite films down below."
   summary.appendChild(p)
   section.appendChild(summary)
-
-    
+  
   form.innerHTML = `<h4>Add New Film</h4>
   <label for="title">Title: </label>
   <input type="text" name="title" placeholder="The Irishman" id="new-film" />
   <label for="director">Director: </label>
   <input type="text" name="director" placeholder="Martin Scorsese" id="new-director" />
   <input type="submit" class="submitBtn" value="Fetch Film" />`
-  body.appendChild(form)
+  main.appendChild(form)
+  // body.appendChild(main)
   form.addEventListener('submit', startFetching)
 }, {once : true})
 
@@ -61,46 +64,56 @@ function handleSearch(film, director, title){
 function postFilm(film){
   let div = document.createElement('div')
   let img = document.createElement('img')
-  let btn = document.createElement('button')
-  btn.innerHTML = "Add Comment"
+  let addBtn = document.createElement('button')
+  addBtn.innerHTML = "Add Film to Database"
   img.src = film.Poster
   div.className = "images"
   img.className = 'posters'
-  btn.className = 'addBtn'
-  div.append(img, btn)
-  body.appendChild(div)
+  addBtn.className = 'addBtn'
+  div.append(img, addBtn)
+  main.appendChild(div)
+  setTimeout(() => {
+    console.log(div)
+  }, 2000);
 
-  btn.addEventListener('click', function(){
-    let commentSect = document.createElement('form')
-    commentSect.className = "formComment"
-    commentSect.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
-    <input type="submit" class="commentBtn" value="Submit" />`
-    commentSect.className = "comment"
-    div.appendChild(commentSect)
-    btn.remove()
+  addBtn.addEventListener('click', function(e){
+    addFilm(e, film)
+  })
+  // btn.addEventListener('click', function(){
+  //   let commentSect = document.createElement('form')
+  //   commentSect.className = "formComment"
+  //   commentSect.innerHTML = `<input type="text" class="commentText" name="comment" placeholder="Type your comment"/>
+  //   <input type="submit" class="commentBtn" value="Submit" />`
+  //   commentSect.className = "comment"
+  //   div.appendChild(commentSect)
+  //   btn.remove()
 
-    commentSect.addEventListener('submit', function(e){
-      e.preventDefault()
-      fetch(`http://localhost:3000/posts/${div.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        'comments': `${e.target.comment.value}`
-        }),
-      })
+  //   commentSect.addEventListener('submit', function(e){
+  //     e.preventDefault()
+  //     fetch(`http://localhost:3000/posts/${div.id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       'comments': `${e.target.comment.value}`
+  //       }),
+  //     })
 
-    commentSect.reset()
+  //   commentSect.reset()
       
-    })
+  //   })
 
-  }, {once : true})
+  // }, {once : true})
 
   img.addEventListener('mouseover', () => img.className = img.className+" mouseOver")
   img.addEventListener('mouseout', () => img.className ="posters")
 
+}
 
+function addFilm(e, film){
+  // console.log(e.target.parentNode)
+  //REMEMBER TO HANDLE DIV.ID = RESP.ID
   fetch("http://localhost:3000/posts", {
       method: "POST",
       headers: {
@@ -117,9 +130,7 @@ function postFilm(film){
         }),
       })
       .then(resp => resp.json())
-      .then(resp => {
-        div.id = resp.id
-      })
+      .then(resp => console.log(resp))
 }
 
 function deleteObj(start, finish){
