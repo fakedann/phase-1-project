@@ -16,7 +16,7 @@ btn.addEventListener('click', function(){
   summary.appendChild(p)
   section.appendChild(summary)
   
-  form.innerHTML = `<h4>Add New Film</h4>
+  form.innerHTML = `<h4>Searched Films</h4>
   <label for="title">Title: </label>
   <input type="text" name="title" placeholder="The Irishman" id="new-film" />
   <label for="director">Director: </label>
@@ -65,7 +65,7 @@ function postFilm(film){
   let div = document.createElement('div')
   let img = document.createElement('img')
   let addBtn = document.createElement('button')
-  addBtn.innerHTML = "Add Film to Database"
+  addBtn.innerHTML = "ADD TO DATABASE"
   img.src = film.Poster
   div.className = "images"
   img.className = 'posters'

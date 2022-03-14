@@ -104,14 +104,6 @@ header {
   width: 100px;
   height: 40px;
   color: white;
-  box-shadow: inset 0 0 0 0 #7D1D3F;
-  transition: ease-out 0.3s;
-}
-
-.commentBtn:hover{
-  box-shadow: inset 100px 0 0 0 #7D1D3F;
-  cursor: pointer;
-  color: #000;
 }
 
 .commentText{
@@ -130,6 +122,17 @@ header {
   width: 100px;
   height: 40px;
   color: white;
+}
+
+.addBtn, .commentBtn, .submitBtn {
+  box-shadow: inset 0 0 0 0 #7D1D3F;
+  transition: ease-out 0.3s;
+}
+
+.addBtn:hover, .commentBtn:hover, .submitBtn:hover {
+  box-shadow: inset 100px 0 0 0 #7D1D3F;
+  cursor: pointer;
+  color: #000;
 }
 
 .posters.mouseOver{

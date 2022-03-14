@@ -1,5 +1,33 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 1,
+      "comments": "hola"
+    },
+    {
+      "title": "The Irishman",
+      "directors": "Martin Scorsese",
+      "genres": "Biography, Crime, Drama",
+      "runtime": "209 min",
+      "countries": "United States",
+      "id": 2,
+      "comments": "hola"
+    },
+    {
+      "title": "Hugo",
+      "directors": "Martin Scorsese",
+      "genres": "Adventure, Drama, Family",
+      "runtime": "126 min",
+      "countries": "United States, United Kingdom, France",
+      "id": 3,
+      "comments": "dadada"
+    }
+  ],
   "comments": [],
   "profile": {
     "name": "typicode"
