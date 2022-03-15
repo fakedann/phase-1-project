@@ -1,3 +1,4 @@
+//WAITING FOR START-BUTTON CLICK IN ORDER TO SET UP THE PAGE
 document.addEventListener('DOMContentLoaded', function(){
   let btn = document.querySelector('.btn')
   btn.addEventListener('click', function(e){
@@ -5,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }, {once : true})
 })
 
+//CREATING MULTIPLE DOM ELEMENTS
 function setUpPage(e){
   let body = e.target.parentNode.parentNode
   let section = document.createElement('section')
@@ -14,20 +16,21 @@ function setUpPage(e){
   main.className = "main"
   main.appendChild(form)
   body.append(section, main, footer)
-  //CREATING SUMMARY
+  //SETTING UP SUMMARY
   let summary = document.createElement('div')
   summary.className = 'summary'
   let p = document.createElement('p')
   p.innerHTML = "Search your favorite films down below."
   summary.appendChild(p)
   section.appendChild(summary)
-  //CREATING FOOTER
-  footer.innerHTML = `<button type="button" class="btn" id="database">CHECK YOUR DATABASE</button>`
+  //SETTING UP FOOTER
+  footer.innerHTML = `<button type="button" class="btn" id="database">CHECK YOUR DATABASE</button>
+  <div></div>`
   let data = document.getElementById('database')
   data.addEventListener('click', function(e){
     checkDatabase(e)
   })
-  //CREATING FORM
+  //SETTING UP FORM
   form.innerHTML = `<h4>SEARCHED FILMS</h4>
   <label for="title">Title: </label>
   <input type="text" name="title" placeholder="The Irishman" id="new-film" />
@@ -38,6 +41,7 @@ function setUpPage(e){
 
 }
 
+//CHECKING THAT THE USER SUBMITS ACCEPTABLE INPUT
 function checkInput(e){
   e.preventDefault()
   let evento = e
@@ -55,6 +59,7 @@ function checkInput(e){
   e.target.reset()
 }
 
+//IF INPUT IS ACCEPTABLE, CHECK IF THERE'S A MATCH
 function handleSearch(evento, film, director, title){
   let auxDirector = ''
   let auxTitle = ''
@@ -72,6 +77,7 @@ function handleSearch(evento, film, director, title){
   }
 }
 
+//IF THERE'S A MATCH, A FILM POSTER WILL BE POSTED ON THE DOM
 function showPoster(evento, film){
   let div = document.createElement('div')
   let img = document.createElement('img')
@@ -95,12 +101,11 @@ function showPoster(evento, film){
       handleComment(e)
     })
   })
-
   img.addEventListener('mouseover', () => img.className = img.className+" mouseOver")
   img.addEventListener('mouseout', () => img.className ="posters")
-
 }
 
+//IF FILM WOULD LIKE TO BE ADDED BY THE USER, THIS FUNCTION ADDS IT TO THE DATABASE
 function addFilm(e, film){
   let parentDiv = e.target.parentNode
   fetch("http://localhost:3000/posts", {
@@ -117,17 +122,16 @@ function addFilm(e, film){
         "countries": `${film.Country}`,
         "comments": '',
         "poster": `${film.Poster}`
-  
         }),
       })
       .then(resp => resp.json())
       .then(resp => {
         alert('This film was succesfully added to your database!')
         parentDiv.id = resp.id
-
       })
 }
 
+//IF USER WANTS TO ADD A COMMENT TO A FILM, THIS FUNCTION WILL HANDLE IT
 function handleComment(e){
   let commentSect = document.createElement('form')
   commentSect.className = "formComment"
@@ -150,15 +154,19 @@ function handleComment(e){
     })
 
     alert('Your comment was succesfully added!')
-    e.target.reset()
-    
+    e.target.reset()   
   })
 }
 
+//DISPLAY WHAT'S INSIDE THE DATABASE
 function checkDatabase(e){
-  let container = document.createElement('div')
-  container.innerHTML = ''
-  e.target.parentNode.appendChild(container)
+  let foot = e.target.parentNode
+  let container = foot.lastChild
+  
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
   fetch('http://localhost:3000/posts')
   .then(resp => resp.json())
   .then( database => {
@@ -183,9 +191,9 @@ function checkDatabase(e){
       }
     }
   })
-
 }
 
+//THIS FUNCTION IS NOT MEANT TO BE USED BY THE USER. IT DELETES FILMS ON THE DATABASE
 function deleteObj(start, finish){
   for(let i=start;i <= finish; i++){
     fetch(`http://localhost:3000/posts/${i}`, {
