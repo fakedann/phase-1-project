@@ -1,5 +1,5 @@
 # Phase-1 Project
-## _Daniel's Film Processor_
+## _Daniel's Film Finder_
 
 ## Features
 
@@ -8,7 +8,7 @@
 - Store this information in a personal database that persists
 - Allow the user to modify elements in the database
 
-The project's main purpose is showcasing the ability to properly access a public API and efficiently manipulating its data through frontend tools. In order to accomplish this exercise, [OMDb's API](http://www.omdbapi.com/) was employed because of its resourceful film data. **Daniel's Film Processor** allows the user to search and store a beloved film into a personal database provided by [NPM, inc.](https://www.npmjs.com/package/json-server)
+The project's main purpose is showcasing the ability to properly access a public API and efficiently manipulating its data through frontend tools. In order to accomplish this exercise, [OMDb's API](http://www.omdbapi.com/) was employed because of its resourceful film data. **Daniel's Film Finder** allows the user to search and store a beloved film into a personal database provided by [NPM, inc.](https://www.npmjs.com/package/json-server)
 
 ## Setup
 
@@ -102,6 +102,8 @@ If the user decides to add a film to the database, there will be appear a new bu
 ```
 
 At the end of the page, there will always be a CHECK DATABASE button. This element will alow the user to check which movies have been added to the database at any given moment. This is a more didactical and visually pleasing way to showcase the information that has been stored, rather than having to access the aforementioned JSON's formatted data directly through the server.
+
+[Here's a link that walkthroughs the application in case more clarification is needed.](https://youtu.be/bC1duF1qy5w)
 
 #### Contributing
 Suggestions are welcome in terms of the application's performance. For direct contact, use the following email address: daniel07escalona@gmail.com. Furthermore, it is understood that the application's visual are very simple and amateurish, so if there's any tips regarding this topic, they are very welcome as well.
