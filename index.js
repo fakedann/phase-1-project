@@ -17,19 +17,22 @@ function setUpPage(e){
   main.appendChild(form)
   body.append(section, main, footer)
   //SETTING UP SUMMARY
+  
   let summary = document.createElement('div')
   summary.className = 'summary'
   let p = document.createElement('p')
   p.innerHTML = "Search your favorite films down below."
   summary.appendChild(p)
   section.appendChild(summary)
+
   //SETTING UP FOOTER
   footer.innerHTML = `<button type="button" class="btn" id="database">CHECK YOUR DATABASE</button>
-  <div></div>`
+  <div id="container"></div>`
   let data = document.getElementById('database')
   data.addEventListener('click', function(e){
     checkDatabase(e)
   })
+
   //SETTING UP FORM
   form.innerHTML = `<h4>SEARCHED FILMS</h4>
   <label for="title">Title: </label>

@@ -56,6 +56,7 @@ After clicking the Start button located in the main webpage (index.html), the us
 **Director: MaRtIn ScOrsEse**
 
 However, these inputs will not work because they are not 'exact' matches:
+
 `Title: Taxi `
 `Director: Martin`
 
@@ -68,7 +69,7 @@ However, these inputs will not work because they are not 'exact' matches:
 `Title: Taxi Driver`
 `Director:   `
 
-If the user satisfactorily retrieves a film, a corresponding poster will be posted in the webpage. At this moment, selected data from the film will be directly posted into http://localhost:3000/posts as follows:
+If the user satisfactorily retrieves a film, a corresponding poster will be posted in the webpage. Moreover, an 'ADD TO DATABASE' button will appear near it. If the user confirms that they retrieved the correct film and wishes to add it to the database, they can do so by cliclking the aforementioned button. If they proceed with this action, this is how the information will be stored in the database:
 
 ```sh
  [
@@ -78,12 +79,13 @@ If the user satisfactorily retrieves a film, a corresponding poster will be post
     "genres": "Crime, Drama",
     "runtime": "114 min",
     "countries": "United States",
+    "comments": ""
     "id": 1
   }
 ]
 ```
 
-Moreover, near the film's poster, there will be a button that the user can click in order to add comments for that film directly into the database. These comments can be updated at any time if the page is not refreshed. They will persist if they page is reloaded, but they will not be able to be changed after that moment.
+If the user decides to add a film to the database, there will be appear a new button that the user can click in order to add comments for that film. These comments can be updated at any time if the page is not refreshed. They will persist if they page is reloaded, but they will not be able to be changed after that moment.
 
 ```sh
 [
@@ -93,11 +95,13 @@ Moreover, near the film's poster, there will be a button that the user can click
     "genres": "Crime, Drama",
     "runtime": "114 min",
     "countries": "United States",
-    "id": 1,
-    "comments": "This is a great film."
+    "comments": "This is a great film.",
+    "id": 1
   }
 ]
 ```
+
+At the end of the page, there will always be a CHECK DATABASE button. This element will alow the user to check which movies have been added to the database at any given moment. This is a more didactical and visually pleasing way to showcase the information that has been stored, rather than having to access the aforementioned JSON's formatted data directly through the server.
 
 #### Contributing
 Suggestions are welcome in terms of the application's performance. For direct contact, use the following email address: daniel07escalona@gmail.com. Furthermore, it is understood that the application's visual are very simple and amateurish, so if there's any tips regarding this topic, they are very welcome as well.
@@ -105,8 +109,8 @@ Suggestions are welcome in terms of the application's performance. For direct co
 #### Authors and Acknowledgment
 **Author: Daniel Escalona. Student at [Flatiron School.](https://flatironschool.com/welcome-to-flatiron-school/?utm_source=Google&utm_medium=ppc&utm_campaign=12728169833&utm_content=127574232664&utm_term=flatiron&uqaid=513799628630&CjwKCAiA4KaRBhBdEiwAZi1zzgCEBEdI6285I6gmLUyI5Pw_8YNLXh1P1oRIGf8t0fXozErvGMW5FRoCG1MQAvD_BwE&gclid=CjwKCAiA4KaRBhBdEiwAZi1zzgCEBEdI6285I6gmLUyI5Pw_8YNLXh1P1oRIGf8t0fXozErvGMW5FRoCG1MQAvD_BwE)**
 **This project would not have been possible without the following resources:**
-http://www.csszengarden.com/
-http://www.omdbapi.com/
+http://www.csszengarden.com/<br/>
+http://www.omdbapi.com/<br/>
 https://flatironschool.com/courses/coding-bootcamp/
 
 ## License
