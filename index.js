@@ -66,18 +66,21 @@ function checkInput(e){
 function handleSearch(evento, film, director, title){
   let auxDirector = ''
   let auxTitle = ''
-  if (film.Response !== false){
+  if (film.Response !== 'False'  ){
     auxDirector = film.Director.toLowerCase()
     auxTitle = film.Title.toLowerCase()
+
+    if(auxDirector === director && auxTitle === title){
+      showPoster(evento, film)
+    }else{
+      alert('Sorry, your movie did not match with the director you submitted. Please, try again.')
+    }
+
   }else{
     alert('Sorry, your search did not match with any movies. Please, try again.')
   }
 
-  if(auxDirector === director && auxTitle === title){
-    showPoster(evento, film)
-  }else{
-    alert('Sorry, your movie did not match with the director you submitted. Please, try again.')
-  }
+
 }
 
 //IF THERE'S A MATCH, A FILM POSTER WILL BE POSTED ON THE DOM
